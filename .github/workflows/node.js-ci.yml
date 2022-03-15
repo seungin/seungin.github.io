@@ -4,7 +4,7 @@ on:
   push:
     branches: main
   pull_request:
-    branches: main
+    branches: "**"
 
 jobs:
   build:
@@ -12,23 +12,33 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [14.x, 16.x]
+        os: [ubuntu-latest]
+        node: [16.x]
 
     steps:
-    - name: Check out Hyas project
-      uses: actions/checkout@v2
+      - name: Check out Hyas project
+        uses: actions/checkout@v2
 
-    - name: Set up Node.js ${{ matrix.node }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node }}
+      - name: Set up Node.js ${{ matrix.node }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node }}
 
-    - name: Install dependencies
-      run: npm ci
+      - name: Install dependencies
+        run: npm ci
 
-    - name: Run Hyas test script
-      run: npm test
+      - name: Run Hyas test script
+        run: npm test
 
-    - name: Build production website
-      run: npm run build
+      - name: Build production website
+        run: npm run build
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.TOKEN }}
+          external_repository: seungin/seungin.github.io
+          publish_dir: ./public
+          user_name: "Seungin Cha"
+          user_email: seungin.cha@gmail.com
+          publish_branch: gh-pages
