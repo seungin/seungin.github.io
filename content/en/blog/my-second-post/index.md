@@ -13,4 +13,3 @@ contributors: []
 ## Now Actions!
 
 GitHub actions workflow seems already applied. ;)
-
