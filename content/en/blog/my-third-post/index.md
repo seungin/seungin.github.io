@@ -4,7 +4,7 @@ description: ""
 lead: ""
 date: 2022-03-16T09:41:55+09:00
 lastmod: 2022-03-16T09:41:55+09:00
-draft: true
+draft: false
 weight: 50
 images: ["my-third-post.jpg"]
 contributors: []
