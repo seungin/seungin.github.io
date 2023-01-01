@@ -17,10 +17,10 @@ jobs:
 
     steps:
       - name: Check out Hyas project
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Node.js ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
 
@@ -36,7 +36,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          personal_token: ${{ secrets.TOKEN }}
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
           external_repository: seungin/seungin.github.io
           publish_dir: ./public
           user_name: "Seungin Cha"
